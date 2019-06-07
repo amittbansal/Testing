@@ -1,0 +1,103 @@
+<head>
+      <title>Triangle</title>
+      <script type="text/javascript">
+      function validate() 
+{
+            var side1=document.getElementById("SideA").value;
+           var side2=document.getElementById("SideB").value;
+           var side3 = document.getElementById("SideC").value;
+            var error = document.getElementById("Msg");
+
+if (side1 == "" || side2 == "" || side3 == "" || Number(side1)==0 ||      
+Number(side2)==0||Number(side3)==0) 
+{
+                  error.innerHTML = "Please enter all the sides";
+            }
+            else 
+{
+                  var splChars = "*|.,\':<>[]{}\;()@&$#%abcdefghijklmnopqrstuvwxyz";
+                  var check1 = "false";
+                  for (var i = 0; i < side1.length; i++)  
+ {
+                     if (splChars.indexOf(side1.charAt(i)) != -1) 
+{
+                            check1 = "true";
+                   }
+                }
+            
+for (var i = 0; i < side2.length; i++) 
+{
+                   if (splChars.indexOf(side2.charAt(i)) != -1) 
+{
+                          check1 = "true";
+                   }
+               }
+            
+for (var i = 0; i < side3.length; i++) 
+{
+                    if (splChars.indexOf(side3.charAt(i)) != -1) 
+{
+                          check1 = "true";
+                    }
+                }
+
+                if (check1 == "true") 
+{
+error.innerHTML = "Illegal characters detected!";
+               }
+                else 
+{
+if (((Number(side1) + Number(side2)) > Number(side3)) && ((Number(side1) + Number(side3)) > Number(side2)) &&((Number(side3) + Number(side2)) > Number(side1))) 
+{
+                            document.getElementById("Msg2").innerHTML = "Valid Triangle";
+                  }
+                    Else
+ {
+                        error.innerHTML = "Invalid Triangle";
+                   }
+               }
+          }
+        }
+
+        function hide(txt) 
+       {
+        if (txt != '') 
+{
+                 document.getElementById("Msg").innerHTML = "";
+                document.getElementById("Msg2").innerHTML = "";
+            }
+       }
+    
+</script>
+    <style type="text/css">
+        #Text1
+        {
+            width: 90px;
+        }
+        #Text2
+        {
+            width: 90px;
+        }
+        #Text3
+        {
+            width: 90px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+<label>Enter Sides of Triangle</label>
+  <br />
+  <br />
+&nbsp;&nbsp;&nbsp; A
+    <input id="SideA" type="text" onkeyup="hide(this.value)"/>&nbsp;&nbsp;&nbsp; B
+    <input id="SideB" type="text" onkeyup="hide(this.value)"/>&nbsp;&nbsp;&nbsp; C
+    <input id="SideC" type="text" onkeyup="hide(this.value)"/>
+    <span style="color: #FF0000" id="Msg"></span>
+    <span style="color: #0000FF" id="Msg2"></span>
+    <br />
+    <br />
+    <input id="Submit1" type="submit" value="Validate" onclick="validate()"/></div>
+</body>
+</html>

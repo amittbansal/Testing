@@ -1,0 +1,93 @@
+<html>
+<head>
+
+<title>Login Page</title>
+
+</head>
+
+<script type="text/javascript">
+function action()
+{
+var txt1=document.getElementById("usrname").value;
+var txt2=document.getElementById("pwd").value;
+var err1=document.getElementById("error1");
+  var err2=document.getElementById("error2")
+    if (txt1 == '' && txt2 == '') 
+{
+            err1.innerHTML = "*";
+            err2.innerHTML = "*";
+           document.getElementById("usrname").focus();
+     }
+     else if (txt1 == '') 
+{
+           err1.innerHTML = "*";
+            document.getElementById("usrname").focus();
+      }
+      else if (txt2 == '') 
+{
+            err2.innerHTML = "*";
+           document.getElementById("pwd").focus();
+      }
+      else 
+{
+              var splChars = "*|,\':<>[]{}\;()@&$#%";
+              var check1 = "false";
+              for (var i = 0; i < txt1.length; i++) 
+{
+                    if (splChars.indexOf(txt1.charAt(i)) != -1) 
+{
+                          check1 = "true";
+                    }
+               }
+
+
+              if (check1 == "true") 
+{
+                    err1.innerHTML = "Illegal characters detected!";
+                document.getElementById("usrname").focus();
+               }
+              else 
+{
+                if (txt1.charAt(0).toUpperCase() != txt1.charAt(0)) 
+{
+                        err1.innerHTML = "First letter should be capital";
+                  }
+                  else 
+{
+document.getElementById("Msg").innerHTML = "Authorised User";
+                }
+            }
+   }
+}
+
+function hide1(txt)
+{
+if(txt!='')
+{
+        document.getElementById("error1").innerHTML = "";
+ document.getElementById("Msg").innerHTML = "";
+  }
+}
+
+function hide2(txt)
+{
+if(txt!='')
+{
+        document.getElementById("error2").innerHTML = "";
+        document.getElementById("Msg").innerHTML = "";
+  }
+}
+
+</script>
+
+<body>
+
+Username: <input type="text" id="usrname" onkeyup="hide1(this.value)">
+<span id="error1" style="color:Red"></span><br/>
+Password: <input type="password" id="pwd" onkeyup="hide2(this.value)">
+<span id="error2" style="color:Red"></span><br/>
+<input  onclick="action()" type="submit" value="Submit">
+<span id="Msg" style="color:#0000FF"></span>
+
+</body>
+</html>

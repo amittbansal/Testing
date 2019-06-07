@@ -1,0 +1,78 @@
+<Html>
+<head>
+   	 <title>Mobile Num Validation</title>
+    	<style type="text/css">
+       	 	#Text1
+        		{
+            			width: 171px;
+        		}
+    	</style>
+    	<script type="text/javascript">
+        	function validate() 
+{
+            		var string = document.getElementById("MobileNum").value;
+            		var error = document.getElementById("Msg");
+            		if (string == "") 
+{
+                		error.innerHTML = "*";
+           		 }
+            		else 
+{
+               		var splChars = "*|.,\':<>[]{}\;()@&$#%abcdefghijklmnopqrstuvwxyz";
+               		var check1 = "false";
+                		for (var i = 0; i < string.length; i++) 
+{
+                    			if (splChars.indexOf(string.charAt(i)) != -1) 
+{
+                        				check1 = "true";
+                    			}
+                		}
+                		if (check1 == "true")
+ {
+                    			error.innerHTML = "Illegal characters detected!";
+                		}
+               		 else 
+{
+                   			 if (string.length != 10) 
+{
+                        			         error.innerHTML = "Mobile number should be of 10 digits";
+                   			 }
+                   			
+ else if (string.charAt(0) == '0') 
+{
+                        			        error.innerHTML = "Mobile number should not begin with 0";
+                    			}
+                    			else 
+{
+document.getElementById("Msg2").innerHTML = "Valid Mobile Number";
+                    			}
+                		}
+            }
+           document.getElementById("MobileNum").focus();
+      }
+        
+
+function hide1(txt) 
+{
+            		if (txt != '') 
+{
+                		document.getElementById("Msg").innerHTML = "";
+                		document.getElementById("Msg2").innerHTML = "";
+            		}
+        }
+    </script>
+
+</head>
+
+<body>
+<div>
+<label>Enter Mobile Number</label>&nbsp;
+    <input id="MobileNum" type="text"  onkeyup="hide1(this.value)"/>
+    <span id="Msg" style="color: #FF0000"  ></span>
+    <span style="color: #0000FF" id="Msg2"></span>
+    <br />
+    <input id="Submit1" type="submit" value="Validate" onclick="validate()"/>
+    </div>
+
+</body>
+</html>
